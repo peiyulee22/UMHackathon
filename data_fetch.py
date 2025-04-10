@@ -51,10 +51,17 @@ async def get_data(topic):
 
 async def main():
     topics = [
-        'cryptoquant|btc/inter-entity-flows/miner-to-miner?from_miner=f2pool&to_miner=all_miner&window=hour',
-        'cryptoquant|btc/exchange-flows/inflow?exchange=okx&window=hour',
-        'glassnode|blockchain/utxo_created_value_median?a=BTC&c=usd&i=1h',
+        
+        "bybit-linear|candle?symbol=BTCUSDT&interval=1m",
+        
     ]
+
+#topic
+#"cryptoquant|btc/market-data/open-interest?exchange=bybit&window=min",
+#bybit-linear|candle?interval=1m&symbol=BTCUSDT
+#"cryptoquant|btc/market-data/coinbase-premium-index?window=hour",
+#"cryptoquant|btc/exchange-flows/outflow?exchange=coinbase_advanced&window=hour",
+#"glassnode|market/deltacap_usd?a=BTC&i=10m",
 
     tasks = [get_data(topic) for topic in topics]
     dataframes = await asyncio.gather(*tasks)
